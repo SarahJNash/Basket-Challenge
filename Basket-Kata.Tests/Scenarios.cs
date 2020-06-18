@@ -16,7 +16,7 @@ namespace Basket_Kata.Tests
         [TestMethod]
         public void Basket1()
         {
-            var product1 = new Product { Name = "Hat", Price = 10.50M, Category=ProductCategory.Clothing };
+            var product1 = new Product { Name = "Hat", Price = 10.50M, Category = ProductCategory.Clothing };
             var product2 = new Product { Name = "Jumper", Price = 54.65M, Category = ProductCategory.Clothing };
             var voucher = new GiftVoucher { Name = "XXX-XXX", Discount = 5M };
 
@@ -36,12 +36,12 @@ namespace Basket_Kata.Tests
         //------------
         //Total: £51.00
         //Message: “There are no products in your basket applicable to voucher Voucher YYY-YYY.”
-    [TestMethod]
+        [TestMethod]
         public void Basket2()
         {
-            var product1 = new Product { Name = "Hat", Price =25.00M,  Category=ProductCategory.Clothing };
+            var product1 = new Product { Name = "Hat", Price = 25.00M, Category = ProductCategory.Clothing };
             var product2 = new Product { Name = "Jumper", Price = 26M, Category = ProductCategory.Clothing };
-            var voucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Category= ProductCategory.HeadGear, Threshold=50 };
+            var voucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Category = ProductCategory.HeadGear, Threshold = 50 };
 
             var basket = new Basket();
             basket.AddProduct(product1);
@@ -52,7 +52,6 @@ namespace Basket_Kata.Tests
             Assert.AreEqual("There are no products in your basket applicable to voucher Voucher YYY-YYY.", basket.Message);
         }
 
-
         //Basket 3:
         //1 Hat @ £25.00
         //1 Jumper @ £26.00
@@ -61,7 +60,6 @@ namespace Basket_Kata.Tests
         //1 x £5.00 off Head Gear in baskets over £50.00 Offer Voucher YYY-YYY applied
         //------------
         //Total: £51.00
-        
         [TestMethod]
         public void Basket3()
         {
@@ -88,13 +86,12 @@ namespace Basket_Kata.Tests
         //1 x £5.00 off baskets over £50.00 Offer Voucher YYY-YYY applied
         //------------
         //Total: £41.00
-
         [TestMethod]
         public void Basket4()
         {
             var product1 = new Product { Name = "Hat", Price = 25.00M, Category = ProductCategory.Clothing };
             var product2 = new Product { Name = "Jumper", Price = 26M, Category = ProductCategory.Clothing };
-            var offerVoucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M,  Threshold = 50 };
+            var offerVoucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Threshold = 50 };
             var giftVoucher = new GiftVoucher { Name = "XXX-XXX", Discount = 5M };
 
             var basket = new Basket();
@@ -105,9 +102,8 @@ namespace Basket_Kata.Tests
 
             Assert.AreEqual(41M, basket.Total);
             Assert.IsNull(basket.Message);
-
         }
-    
+
 
         //Basket 5:
         //1 Hat @ £25.00
@@ -118,7 +114,7 @@ namespace Basket_Kata.Tests
         //Total: £55.00
         //------------
         //Message: “You have not reached the spend threshold for voucher YYY-YYY.Spend another £25.01 to receive £5.00 discount from your basket total.”
-     [TestMethod]
+        [TestMethod]
         public void Basket5()
         {
             var product1 = new Product { Name = "Hat", Price = 25.00M, Category = ProductCategory.Clothing };
@@ -133,8 +129,7 @@ namespace Basket_Kata.Tests
 
             Assert.AreEqual(55M, basket.Total);
             Assert.AreEqual("You have not reached the spend threshold for voucher YYY-YYY. Spend another £25.01 to receive £5.00 discount from your basket total.", basket.Message);
-
         }
-
     }
 }
+

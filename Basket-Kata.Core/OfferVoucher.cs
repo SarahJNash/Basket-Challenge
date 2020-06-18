@@ -5,7 +5,6 @@ namespace Basket_Kata.Core
 {
     public class OfferVoucher : Voucher
     {
-
         public ProductCategory? Category { get; set; }
         public decimal Threshold { get; set; }
 
@@ -25,13 +24,13 @@ namespace Basket_Kata.Core
             }
 
             var itemTotal = products.Where(x => x.Category != ProductCategory.GiftVoucher).Sum(p => p.Price);
-
             if (itemTotal > Threshold)
             {
                 return new VoucherApplyResponse { IsValid = true, Discount = discount };
             }
 
             var remaining = Threshold - itemTotal + 0.01M; // +0.01 to take you over the threashold 
+
             return new VoucherApplyResponse
             {
                 IsValid = false,

@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Basket_Kata.Core
 {
     public class Basket
     {
-        private List<Product> Products = new List<Product>();
-        private List<Voucher> Vouchers = new List<Voucher>();
+        private readonly List<Product> Products = new List<Product>();
+        private readonly List<Voucher> Vouchers = new List<Voucher>();
 
         public decimal Total { get; private set; }
         public string Message { get; private set; }
 
         public void AddProduct(Product product)
-        {         
+        {
             Products.Add(product);
             CalculateTotal();
         }
@@ -24,26 +23,24 @@ namespace Basket_Kata.Core
             CalculateTotal();
         }
 
-
         private void CalculateTotal()
-        {            
+        {
             var goodsTotal = Products.Sum(p => p.Price);
 
-            foreach(var v in Vouchers)
+            foreach (var v in Vouchers)
             {
-                var response =  v.Apply(Products); 
-                if(response.IsValid)
+                var response = v.Apply(Products);
+                if (response.IsValid)
                 {
                     goodsTotal -= response.Discount;
-                }else
+                }
+                else
                 {
-                    Message = response.Message; 
+                    Message = response.Message;
                 }
             }
 
-            
-            Total = goodsTotal ;
+            Total = goodsTotal;
         }
-           
     }
 }

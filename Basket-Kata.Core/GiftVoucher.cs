@@ -7,7 +7,6 @@ namespace Basket_Kata.Core
         public override VoucherApplyResponse Apply(List<Product> products)
         {
             return new VoucherApplyResponse { IsValid = true, Discount = Discount };
-
         }
     }
 }
