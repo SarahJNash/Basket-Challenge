@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Basket-Kata/obj
+/Basket-Kata.Core/obj
+/Basket-Kata.Tests/obj
+/Basket-Kata.Core/bin/Debug/netstandard2.0
+/Basket-Kata.Tests/bin/Debug/netcoreapp3.1
