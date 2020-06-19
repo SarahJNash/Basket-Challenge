@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Basket_Kata.Core
+﻿namespace Basket_Kata.Core
 {
-    public class GiftVoucher : Voucher
+    public class GiftVoucher
     {
-        public override VoucherApplyResponse Apply(List<Product> products)
-        {
-            return new VoucherApplyResponse { IsValid = true, Discount = Discount };
-        }
+        public string Name { get; set; }
+        public decimal Value { get; set; }
     }
 }

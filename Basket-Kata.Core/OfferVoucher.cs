@@ -34,7 +34,7 @@ namespace Basket_Kata.Core
             return new VoucherApplyResponse
             {
                 IsValid = false,
-                Message = $"You have not reached the spend threshold for voucher {Name}. Spend another £{remaining.ToString("#.00")} to receive £{Discount.ToString("#.00")} discount from your basket total.",
+                Message = $"You have not reached the spend threshold for voucher {Name}. Spend another £{remaining.ToString("0.00")} to receive £{Discount.ToString("0.00")} discount from your basket total.",
                 Discount = 0
             };
         }

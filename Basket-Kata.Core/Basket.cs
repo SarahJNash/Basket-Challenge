@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Basket_Kata.Core.Services;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Basket_Kata.Core
@@ -6,7 +7,24 @@ namespace Basket_Kata.Core
     public class Basket
     {
         private readonly List<Product> Products = new List<Product>();
-        private readonly List<Voucher> Vouchers = new List<Voucher>();
+        private readonly List<GiftVoucher> GiftVouchers = new List<GiftVoucher>();
+        private IGiftVoucherService _giftVoucherService;
+
+        public Basket(IGiftVoucherService giftVoucherService)
+        {
+            _giftVoucherService = giftVoucherService;
+        }
+
+        private Voucher _voucher;
+        public Voucher Voucher
+        {
+            get { return _voucher; }
+            set
+            {
+                _voucher = value;
+                CalculateTotal();
+            }
+        }
 
         public decimal Total { get; private set; }
         public string Message { get; private set; }
@@ -17,9 +35,9 @@ namespace Basket_Kata.Core
             CalculateTotal();
         }
 
-        public void AddVoucher(Voucher voucher)
+        public void AddGiftVoucher(GiftVoucher voucher)
         {
-            Vouchers.Add(voucher);
+            GiftVouchers.Add(voucher);
             CalculateTotal();
         }
 
@@ -27,16 +45,39 @@ namespace Basket_Kata.Core
         {
             var goodsTotal = Products.Sum(p => p.Price);
 
-            foreach (var v in Vouchers)
+            if (Voucher != null)
             {
-                var response = v.Apply(Products);
-                if (response.IsValid)
+                var result = Voucher.Apply(Products);
+                if (result.IsValid)
                 {
-                    goodsTotal -= response.Discount;
+                    goodsTotal -= result.Discount;
                 }
                 else
                 {
-                    Message = response.Message;
+                    Message = result.Message;
+                }
+
+            }
+
+            if (GiftVouchers != null && GiftVouchers.Count() > 0)
+            {
+                var response = _giftVoucherService.Validate(Products);
+                Message = response.Message;
+
+                if (response.IsValid)
+                {
+                    var giftTotal = GiftVouchers.Sum(g => g.Value);
+
+                    if (goodsTotal < giftTotal)
+                    {
+                        var remaining = (giftTotal - goodsTotal).ToString("0.00");
+                        goodsTotal = 0;
+                        Message = $"You still have £{remaining} left on the gift voucher";
+                    }
+                    else
+                    {
+                        goodsTotal -= giftTotal;
+                    }
                 }
             }
 
