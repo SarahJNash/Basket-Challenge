@@ -65,7 +65,7 @@ namespace Basket_Kata.Tests
         public void Voucher_no_category__basket_value_insufficient_because_of_gift_voucher()
         {
             var product1 = new Product { Name = "Hat", Price = 25.00M, Category = ProductCategory.Clothing };
-            var product2 = new Product { Name = "ggg-ggg", Price = 50.00M, Category = ProductCategory.GiftVoucher };
+            var product2 = new Product { Name = "aaa-aaa", Price = 50.00M, Category = ProductCategory.GiftVoucher };
             var offerVoucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Threshold = 50 };
 
             var basket = new Basket(new GiftVoucherService());
@@ -94,7 +94,7 @@ namespace Basket_Kata.Tests
         [TestMethod]
         public void Voucher_with_category__no_products_that_category()
         {
-            var product1 = new Product { Name = "HeadLamp", Price = 3.50M, Category = ProductCategory.HeadGear };
+            var product1 = new Product { Name = "Head Light", Price = 3.50M, Category = ProductCategory.HeadGear };
             var offerVoucher = new OfferVoucher { Name = "DDD-DDD", Discount = 10M, Threshold = 100, Category = ProductCategory.Clothing };
 
             var basket = new Basket(new GiftVoucherService());
@@ -125,7 +125,7 @@ namespace Basket_Kata.Tests
         public void Voucher_with_category__basket_value_sufficient__category_total_less_than_voucher()
         {
             var product1 = new Product { Name = "Jumper", Price = 55.00M, Category = ProductCategory.Clothing };
-            var product2 = new Product { Name = "HeadLamp", Price = 3.50M, Category = ProductCategory.HeadGear };
+            var product2 = new Product { Name = "Head Light", Price = 3.50M, Category = ProductCategory.HeadGear };
             var offerVoucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Threshold = 50, Category = ProductCategory.HeadGear };
 
             var basket = new Basket(new GiftVoucherService());
@@ -141,7 +141,7 @@ namespace Basket_Kata.Tests
         public void Voucher_with_category__basket_value_insufficient_because_of_gift_voucher()
         {
             var product1 = new Product { Name = "Hat", Price = 25.00M, Category = ProductCategory.Clothing };
-            var product2 = new Product { Name = "ggg-ggg", Price = 50.00M, Category = ProductCategory.GiftVoucher };
+            var product2 = new Product { Name = "aaa-aaa", Price = 50.00M, Category = ProductCategory.GiftVoucher };
             var offerVoucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Threshold = 50, Category = ProductCategory.Clothing };
 
             var basket = new Basket(new GiftVoucherService());

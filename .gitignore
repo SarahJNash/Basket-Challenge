@@ -8,3 +8,5 @@
 /Basket-Kata.Tests/obj
 /Basket-Kata.Core/bin/Debug/netstandard2.0
 /Basket-Kata.Tests/bin/Debug/netcoreapp3.1
+/Basket-Kata.Data/bin/Debug/netstandard2.0
+/Basket-Kata.Data/obj
