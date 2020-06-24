@@ -15,8 +15,7 @@ namespace Basket_Kata.Core.Services.ProductService
         public Product Get(int productId)
         {
             var product = _productRepository.Get(productId);
-            //i could use something like automapper here, but find the complexity that often ends up in the mappers (which aren't easy to understand) 
-            //negates the benefit's just for the sake of a few mins typing everything.
+        
             if (product == null)
             {
                 throw new KeyNotFoundException("Product Id could not be found");
