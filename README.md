@@ -17,7 +17,7 @@ I was initially confused by the Hat product, I assumed this was headgear but loo
 Originally I had the GiftVoucher class inheriting from the Voucher class and therefore the validation code was within the Apply() function. When thinking about multiple vouchers being applied I realised this code would be run for every voucher. I also thought about a scenario where the total of the gift vouchers came to more than the total of the basket, it would be really hard to do this within the Apply method without passing in values that an offer voucher would never require. 
 
 
-##Testing 
+## Testing 
 I have treated the scenarios given in the challenge as integration test so nothing is mocked and data is returned from the repository, all other tests have been mocked.
 
 
