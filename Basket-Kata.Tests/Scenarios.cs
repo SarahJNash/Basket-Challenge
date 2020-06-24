@@ -1,5 +1,6 @@
 using Basket_Kata.Core;
 using Basket_Kata.Core.Services;
+using Basket_Kata.Core.Services.ProductService;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Basket_Kata.Tests
@@ -21,9 +22,9 @@ namespace Basket_Kata.Tests
             var product2 = new Product { Name = "Jumper", Price = 54.65M, Category = ProductCategory.Clothing };
             var voucher = new GiftVoucher { Name = "XXX-XXX", Value = 5M };
 
-            var basket = new Basket(new GiftVoucherService());
-            basket.AddProduct(product1);
-            basket.AddProduct(product2);
+            var basket = new Basket(new GiftVoucherService(), new ProductService(new Data.ProductRepository()));
+            basket.AddProduct(2);
+            basket.AddProduct(5);
             basket.AddGiftVoucher(voucher);
 
             Assert.AreEqual(60.15M, basket.Total);
@@ -44,9 +45,9 @@ namespace Basket_Kata.Tests
             var product2 = new Product { Name = "Jumper", Price = 26M, Category = ProductCategory.Clothing };
             var voucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Category = ProductCategory.HeadGear, Threshold = 50 };
 
-            var basket = new Basket(new GiftVoucherService());
-            basket.AddProduct(product1);
-            basket.AddProduct(product2);
+            var basket = new Basket(new GiftVoucherService(), new ProductService(new Data.ProductRepository()));
+            basket.AddProduct(1);
+            basket.AddProduct(4);
             basket.Voucher = voucher;
 
             Assert.AreEqual(51M, basket.Total);
@@ -69,10 +70,10 @@ namespace Basket_Kata.Tests
             var product3 = new Product { Name = "Head Light", Price = 3.5M, Category = ProductCategory.HeadGear };
             var voucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Category = ProductCategory.HeadGear, Threshold = 50 };
 
-            var basket = new Basket(new GiftVoucherService());
-            basket.AddProduct(product1);
-            basket.AddProduct(product2);
-            basket.AddProduct(product3);
+            var basket = new Basket(new GiftVoucherService(), new ProductService(new Data.ProductRepository()));
+            basket.AddProduct(1);
+            basket.AddProduct(4);
+            basket.AddProduct(9);
             basket.Voucher = voucher;
 
             Assert.AreEqual(51M, basket.Total);
@@ -95,9 +96,9 @@ namespace Basket_Kata.Tests
             var offerVoucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Threshold = 50 };
             var giftVoucher = new GiftVoucher { Name = "XXX-XXX", Value = 5M };
 
-            var basket = new Basket(new GiftVoucherService());
-            basket.AddProduct(product1);
-            basket.AddProduct(product2);
+            var basket = new Basket(new GiftVoucherService(), new ProductService(new Data.ProductRepository()));
+            basket.AddProduct(1);
+            basket.AddProduct(4);
             basket.Voucher = offerVoucher;
             basket.AddGiftVoucher(giftVoucher);
 
@@ -123,9 +124,9 @@ namespace Basket_Kata.Tests
 
             var offerVoucher = new OfferVoucher { Name = "YYY-YYY", Discount = 5M, Threshold = 50 };
 
-            var basket = new Basket(new GiftVoucherService());
-            basket.AddProduct(product1);
-            basket.AddProduct(product2);
+            var basket = new Basket(new GiftVoucherService(), new ProductService(new Data.ProductRepository()));
+            basket.AddProduct(1);
+            basket.AddProduct(12);
             basket.Voucher = offerVoucher;
 
             Assert.AreEqual(55M, basket.Total);

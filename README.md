@@ -1,14 +1,15 @@
 # Basket Test
 This solution provides only a portion of a complete application. It has the class libraries required to fill the spec and some tests that call them. 
 
-
+i have treated the scenarios given in the challenge as integration test so nothing is mocked  and data is returned from the repository.
+All other tests have been mocked.
 
 I imagine that a UI would be produced that displays the products and then adds them one at a time to a basket. This means that products would be added to a basket by id. 
 The system would then retrieve the data from a database making sure the user could never change a product. 
 
  There would be a Basket.Data project that would get (perhaps even set) the data
 
-
+ product.id would be a guid in real life but for ease I have made it an int
 
 
 ## Assumptions

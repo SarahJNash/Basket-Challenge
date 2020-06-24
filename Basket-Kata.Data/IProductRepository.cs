@@ -1,10 +1,11 @@
-﻿using Basket_Kata.Data.Models;
+﻿using Basket_Kata.Data.Entities;
 using System.Collections.Generic;
 
 namespace Basket_Kata.Data
 {
     public interface IProductRepository
     {
-       IEnumerable<Product> GetAll();
+        IEnumerable<DBProduct> GetAll();
+        DBProduct Get(int productId);
     }
 }

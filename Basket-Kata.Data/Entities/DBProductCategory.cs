@@ -1,6 +1,6 @@
-﻿namespace Basket_Kata.Data.Models
+﻿namespace Basket_Kata.Data.Entities
 {
-    public enum ProductCategory
+    public enum DBProductCategory
     {
         HeadGear,
         Other,

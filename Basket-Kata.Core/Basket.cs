@@ -1,4 +1,5 @@
 ﻿using Basket_Kata.Core.Services;
+using Basket_Kata.Core.Services.ProductService;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,10 +10,12 @@ namespace Basket_Kata.Core
         private readonly List<Product> Products = new List<Product>();
         private readonly List<GiftVoucher> GiftVouchers = new List<GiftVoucher>();
         private IGiftVoucherService _giftVoucherService;
+        private IProductService _productService;
 
-        public Basket(IGiftVoucherService giftVoucherService)
+        public Basket(IGiftVoucherService giftVoucherService, IProductService productService)
         {
             _giftVoucherService = giftVoucherService;
+            _productService = productService;
         }
 
         private Voucher _voucher;
@@ -29,8 +32,9 @@ namespace Basket_Kata.Core
         public decimal Total { get; private set; }
         public string Message { get; private set; }
 
-        public void AddProduct(Product product)
+        public void AddProduct(int productId)
         {
+            var product = _productService.Get(productId);
             Products.Add(product);
             CalculateTotal();
         }
